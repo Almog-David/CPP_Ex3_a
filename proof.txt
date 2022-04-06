@@ -1,0 +1,62 @@
+--- 0 seconds
+
+
+### Cleaning old files ###
+rm -f *.o demo test
+
+
+### Check 1: our demo program should compile with your class
+! timeout 10 make -j8 -f Makefile demo
+clang++-9 -std=c++2a -Werror -Wsign-conversion --compile Demo.cpp -o Demo.o
+clang++-9 -std=c++2a -Werror -Wsign-conversion --compile Matrix.cpp -o Matrix.o
+clang++-9 -std=c++2a -Werror -Wsign-conversion Demo.o Matrix.o -o demo
+--- 2 seconds
+### Score 1: 100
+
+
+### Check 2: our demo program should run without errors
+! timeout 10 ./demo
+[323232]
+[323232]
+[323232]
+
+[323232]
+[323232]
+[323232]
+
+[323232]
+[323232]
+[323232]
+
+[323232]
+[323232]
+[323232]
+
+[323232]
+[323232]
+[323232]
+
+End of demo!
+--- 2 seconds
+### Score 2: 100
+
+
+### Check 3: your test should compile 
+! timeout 10 make -j8 -f Makefile test
+clang++-9 -std=c++2a -Werror -Wsign-conversion --compile TestCounter.cpp -o TestCounter.o
+clang++-9 -std=c++2a -Werror -Wsign-conversion --compile Test.cpp -o Test.o
+clang++-9 -std=c++2a -Werror -Wsign-conversion TestCounter.o Test.o Matrix.o -o test
+--- 7 seconds
+### Score 3: 100
+
+
+### Check 4: you should write some new tests
+! timeout 10 ./test
+[doctest] doctest version is "2.3.7"
+[doctest] run with "--help" for options
+--- 7 seconds
+### Score 4: 100
+
+
+Grade: 100
+
